@@ -1,3 +1,6 @@
 django
-django-rest-framework
+djangorestframework
+django-rest-knox
+mysqlclient
+django-cors-headers
 mysqlclient
