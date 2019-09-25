@@ -1,8 +1,1 @@
-django
-djangorestframework
-django-rest-knox
-mysqlclient
-django-cors-headers
-mysqlclient
-
-requests
+poetry
