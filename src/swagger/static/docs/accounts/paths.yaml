@@ -1,0 +1,112 @@
+getUser:
+  tags:
+    - "user"
+  summary: "Get user data"
+  description: "Get equipment list"
+  x-swagger-router-controller: SampleController
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    202:
+      $ref: responses.yaml#/200user
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
+  security:
+    - Token: []
+register:
+  tags:
+    - user
+  summary: Register user into the system
+  description: Register user into the system
+  produces:
+    - application/json
+  reduces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            email:
+              description: The user email
+              type: string
+              example: test@test.com
+            username:
+              description: The user email
+              type: string
+              example: test
+            password:
+              description: The user email
+              type: string
+              example: '123456'
+          required:
+            - username
+            - password
+  responses:
+    200:
+      $ref: responses.yaml#/200user
+    '5XX':
+      description: Unexpected error.
+login:
+  tags:
+    - user
+  summary: Logs user into the system
+  description: "Logs user into the system"
+  produces:
+    - application/json
+  reduces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            username:
+              description: The user email
+              type: string
+              example: test4
+            password:
+              description: The user email
+              type: string
+              example: '123456'
+          required:
+            - username
+            - password
+  responses:
+    200:
+      $ref: responses.yaml#/200user
+    '5XX':
+      description: Unexpected error.
+logout:
+  tags:
+    - user
+  summary: Logs out user from the system
+  description: "Logs out user from the system"
+  produces:
+    - application/json
+  reduces:
+    - application/json
+  responses:
+    200:
+      description: Logout was successfull.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User has logged out successfully!"
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
+  security:
+    - Token: []

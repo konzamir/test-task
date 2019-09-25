@@ -1,0 +1,20 @@
+200user:
+  description: All user data
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            $ref: '../models.yaml#/User'
+401error:
+  description: invalid token
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          detail:
+            type: string
+            example: "Authentication credentials were not provided."
