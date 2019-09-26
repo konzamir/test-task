@@ -24,7 +24,8 @@ urlpatterns = [
         include(
             [
                 path('auth/', include('accounts.urls')),
-                path('docs/', include('swagger.urls'))
+                path('docs/', include('swagger.urls')),
+                path('posts/', include('posts.urls')),
             ]
         ),
     ),

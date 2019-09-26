@@ -34,6 +34,7 @@ class CommendsModel(MPTTModel):
 
 
 class FilesModel(models.Model):
+    name = models.CharField(max_length=64)
     path = models.CharField(max_length=128)
     post = models.ForeignKey(to='PostModel', on_delete=models.CASCADE)
 
