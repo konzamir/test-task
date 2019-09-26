@@ -1,6 +1,18 @@
 version: "3.3"
 
 services:
+  rabbitmq:
+    container_name: blog_rabbitmq
+    image: rabbitmq:3.6.6-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASS}
+    ports:
+      - ${RABBIT_PORT}:5672
+      - ${RABBIT_MANAGER_PORT}:15672
+    networks:
+      - blog
+    restart: on-failure
   mysql:
     container_name: blog_mysql
     image: mysql:5.7

@@ -1,8 +1,11 @@
 import os
 import sys
 
+from celery.schedules import crontab
+
 from dotenv import load_dotenv
 from os.path import join, dirname
+
 
 _dotenv_path = join(dirname(__file__), '../../.env')
 load_dotenv(dotenv_path=_dotenv_path)
@@ -168,3 +171,33 @@ POSTS_PER_PAGE = 50
 #         },
 #     },
 # }
+
+# rabbitmq
+RABBIT_HOST = os.getenv('RABBIT_HOST')
+RABBIT_PORT = os.getenv("RABBIT_PORT")
+RABBIT_USER = os.getenv("RABBIT_USER")
+RABBIT_PASS = os.getenv("RABBIT_PASS")
+_rabbit_port = RABBIT_PORT if DEBUG else 5672
+
+RABBIT_URL = f'amqp://{RABBIT_USER}:{RABBIT_PASS}@{RABBIT_HOST}:{_rabbit_port}'
+
+# celery
+CELERY_IMPORTS = ("post_publisher.tasks", )
+CELERY_BROKER_URL = RABBIT_URL
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Kiev'
+
+CELERY_TASK_ROUTES = {
+    "publish_posts": {
+        'queue': 'task_publish_posts',
+    }
+}
+
+CELERY_BEAT_SCHEDULE = {
+    'task_publish_posts': {
+        'task': 'publish_posts',
+        'schedule': 10,  # crontab(hour=1)
+    }
+}
