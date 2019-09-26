@@ -35,7 +35,7 @@ class CommendsModel(MPTTModel):
 
 class FilesModel(models.Model):
     name = models.CharField(max_length=64)
-    path = models.CharField(max_length=128)
+    file = models.FileField(upload_to='posts/%Y/%m/%d/', null=True, blank=True, max_length=512)
     post = models.ForeignKey(to='PostModel', on_delete=models.CASCADE)
 
     def __str__(self):

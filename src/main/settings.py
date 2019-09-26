@@ -136,7 +136,35 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
+
+MEDIA_URL = "/upload/"
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.1/howto/static-files/
+
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static_files/'
+
 AUTH_USER_MODEL = 'accounts.UserModel'
 
 POSTS_PER_PAGE = 50
+
+# Logging configuration
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': './logs/debug.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }

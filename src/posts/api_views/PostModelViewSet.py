@@ -87,5 +87,11 @@ class PostModelViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response({'data': None}, status=status.HTTP_204_NO_CONTENT)
+        if instance.user == request.user or request.user.is_superuser:
+            self.perform_destroy(instance)
+            return Response({'data': None}, status=status.HTTP_204_NO_CONTENT)
+
+        return Response({
+            'data': None,
+            'error': 'Only author or admin can update this post!'
+        }, status.HTTP_403_FORBIDDEN)
