@@ -1,4 +1,3 @@
-from posts.models import FilesModel
 from posts.serializers import FilesSerializer
 
 from rest_framework import status, mixins, views, parsers
