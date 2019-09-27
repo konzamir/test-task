@@ -5,7 +5,7 @@ from posts.models import PostModel
 from posts.pagination import CustomPaginator
 from posts.serializers import PostSerializer
 
-from rest_framework import generics, viewsets, permissions, status
+from rest_framework import  viewsets, permissions, status
 from rest_framework.response import Response
 
 
